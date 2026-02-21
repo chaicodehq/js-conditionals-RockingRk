@@ -34,7 +34,11 @@ export function calculateTip(billAmount, serviceRating) {
   if (billAmount <= 0) return null;
 
   // Validate service rating
-  if (!Number.isInteger(serviceRating) || serviceRating < 1 || serviceRating > 5) {
+  if (
+    !Number.isInteger(serviceRating) ||
+    serviceRating < 1 ||
+    serviceRating > 5
+  ) {
     return null;
   }
 
@@ -58,12 +62,12 @@ export function calculateTip(billAmount, serviceRating) {
       break;
   }
 
-  const tipAmount = Number((billAmount * tipPercentage / 100).toFixed(2));
+  const tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
   const totalAmount = Number((billAmount + tipAmount).toFixed(2));
 
   return {
     tipPercentage,
     tipAmount,
-    totalAmount
+    totalAmount,
   };
 }
